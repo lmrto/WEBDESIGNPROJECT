@@ -1,0 +1,28 @@
+--LEONARDO MARTINS DE OLIVEIRA matricula:202320725
+
+CREATE DATABASE bdplaylist;
+USE bdplaylist;
+
+CREATE TABLE playlist (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    titulo VARCHAR(255) NOT NULL,
+    genero VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE artista (
+    nome VARCHAR(255) NOT NULL,
+    musica VARCHAR(255) NOT NULL,
+    playlist_id INT,
+    FOREIGN KEY (playlist_id) REFERENCES playlist(id)
+);
+
+INSERT INTO playlist (titulo, genero) VALUES 
+('Chuvosa', 'POP');
+
+INSERT INTO artista (nome, musica, playlist_id) VALUES
+('Artista 1', 'Música 1', 1);
+
+ALTER TABLE artista
+ADD CONSTRAINT fk_playlist
+FOREIGN KEY (playlist_id) REFERENCES playlist(id)
+ON DELETE CASCADE;
